@@ -21,3 +21,11 @@ def update_user(user_id):
     )
     db.commit()
     return jsonify({"message": "User updated successfully"}), 200
+
+@user_bp.route("/", methods=["GET"])
+def get_users():
+    db = get_db()
+    user = db.execute('SELECT * FROM users').fetchone()
+    if user:
+        return jsonify(dict(user)), 200
+    return jsonify({"error": "User not found"}), 404
