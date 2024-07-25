@@ -38,9 +38,6 @@ def create_app(test_config=None):
     from . import user_controller
     app.register_blueprint(user_controller.user_bp)
 
-    from . import task_controller
-    app.register_blueprint(task_controller.task_bp)
-
 
     
     """from . import mainpage_example
