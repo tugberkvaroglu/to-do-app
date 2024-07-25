@@ -1,30 +1,22 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Login from './components/login';
+import Main from './components/main';
+import Profile from './components/profile';
 
 function App() {
-
-  const [data, setData] = useState([{}])
-
-  useEffect(() => {
-    fetch("/api/users/4").then(
-      res => res.json()
-    ).then(
-      data => {
-        setData(data)
-        console.log(data)
-      }
-    )
-  }, [])
   return (
-    <div>
-      {(typeof data.users === "undefined") ? (
-        <p>loading...</p>
-      ) : (
-        
-          <p> data.users </p>
-        )
-      }
-    </div>
-  )
+    <Router>
+      <div>
+        <Routes>
+          <Route path="/login" component={Login} />
+          <Route path="/main" component={Main} />
+          <Route path="/profile" component={Profile} />
+          <Route exact path="/" component={Login} />
+        </Routes>
+      </div>
+    </Router>
+  );
 }
 
-export default App
+export default App;
