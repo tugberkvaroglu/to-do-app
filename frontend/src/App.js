@@ -5,17 +5,28 @@ import Main from './components/main';
 import Profile from './components/profile';
 
 function App() {
+  
+  const isLoggedIn = !!localStorage.getItem('userID'); // Check if user is logged in
+
   return (
-    <Router>
+    <Routes>
       <div>
-        <Routes>
-          <Route path="/login" component={Login} />
-          <Route path="/main" component={Main} />
-          <Route path="/profile" component={Profile} />
-          <Route exact path="/" component={Login} />
-        </Routes>
+        <Switch>
+          <Route path="/login">
+            {isLoggedIn ? <Redirect to="/main" /> : <Login />}
+          </Route>
+          <Route path="/main">
+            {isLoggedIn ? <Main /> : <Redirect to="/login" />}
+          </Route>
+          <Route path="/profile">
+            {isLoggedIn ? <Profile /> : <Redirect to="/login" />}
+          </Route>
+          <Route exact path="/">
+            <Redirect to="/login" />
+          </Route>
+        </Switch>
       </div>
-    </Router>
+    </Routes>
   );
 }
 
