@@ -6,19 +6,20 @@ function Main() {
   useEffect(() => {
     // Fetch tasks from your backend
     const fetchTasks = async () => {
-
-        const userID = localStorage.getItem('userID'); // Retrieve user ID
-
+      try {
+        const userID = localStorage.getItem('userID'); // Retrieve the logged-in user's ID
         if (!userID) {
-          // Handle case where user ID is not found
           console.error('User ID not found');
           return;
         }
 
-      try {
-        const response = await fetch('http://localhost:5000/api/users/${userID}/tasks/');
-        const data = await response.json();
-        setTasks(data);
+        const response = await fetch(`your-backend-domain/api/tasks?user_id=${userID}`);
+        if (response.ok) {
+          const data = await response.json();
+          setTasks(data);
+        } else {
+          console.error('Failed to fetch tasks');
+        }
       } catch (error) {
         console.error('Error:', error);
       }
@@ -29,10 +30,15 @@ function Main() {
 
   return (
     <div>
-      <h1>Main Page - To-Do List</h1>
+      <h1>Task List</h1>
       <ul>
-        {tasks.map((task, index) => (
-          <li key={index}>{task.name}</li>
+        {tasks.map(task => (
+          <li key={task.id}>
+            <h3>{task.title}</h3>
+            <p>{task.description}</p>
+            <p>Due Date: {new Date(task.due_date).toLocaleDateString()}</p>
+            <p>Status: {task.completed ? 'Completed' : 'Not Completed'}</p>
+          </li>
         ))}
       </ul>
     </div>
