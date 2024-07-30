@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Login from './components/login';
 import Main from './components/main';
 import Profile from './components/profile';
@@ -10,22 +10,18 @@ function App() {
 
   return (
     <Routes>
-      <div>
-        <Switch>
           <Route path="/login">
-            {isLoggedIn ? <Redirect to="/main" /> : <Login />}
+            {isLoggedIn ? <Navigate to="/main" /> : <Login />}
           </Route>
           <Route path="/main">
-            {isLoggedIn ? <Main /> : <Redirect to="/login" />}
+            {isLoggedIn ? <Main /> : <Navigate to="/login" />}
           </Route>
           <Route path="/profile">
-            {isLoggedIn ? <Profile /> : <Redirect to="/login" />}
+            {isLoggedIn ? <Profile /> : <Navigate to="/login" />}
           </Route>
           <Route exact path="/">
-            <Redirect to="/login" />
+            <Navigate to="/login" />
           </Route>
-        </Switch>
-      </div>
     </Routes>
   );
 }
