@@ -9,20 +9,23 @@ function App() {
   const isLoggedIn = !!localStorage.getItem('userID'); // Check if user is logged in
 
   return (
-    <Routes>
-          <Route path="/login">
-            {isLoggedIn ? <Navigate to="/main" /> : <Login />}
-          </Route>
-          <Route path="/main">
-            {isLoggedIn ? <Main /> : <Navigate to="/login" />}
-          </Route>
-          <Route path="/profile">
-            {isLoggedIn ? <Profile /> : <Navigate to="/login" />}
-          </Route>
-          <Route exact path="/">
-            <Navigate to="/login" />
-          </Route>
-    </Routes>
+    <Router>
+      <div>
+        <Routes>
+          {/* Redirect to Main if logged in, otherwise show Login */}
+          <Route path="/login" element={isLoggedIn ? <Navigate to="/main" /> : <Login />} />
+
+          {/* Main route, only accessible if logged in */}
+          <Route path="/main" element={isLoggedIn ? <Main /> : <Navigate to="/login" />} />
+
+          {/* Profile route, only accessible if logged in */}
+          <Route path="/profile" element={isLoggedIn ? <Profile /> : <Navigate to="/login" />} />
+
+          {/* Default route */}
+          <Route path="/" element={<Navigate to={isLoggedIn ? "/main" : "/login"} />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
