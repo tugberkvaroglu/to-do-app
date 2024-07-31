@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import Login from './components/login';
+import Login from './components/Login';
 import Main from './components/main';
 import Profile from './components/profile';
+import Register from './components/Register';
 
 function App() {
   
@@ -14,6 +15,9 @@ function App() {
         <Routes>
           {/* Redirect to Main if logged in, otherwise show Login */}
           <Route path="/login" element={isLoggedIn ? <Navigate to="/main" /> : <Login />} />
+
+          {/* Register route */}
+          <Route path="/register" element={<Register />} />
 
           {/* Main route, only accessible if logged in */}
           <Route path="/main" element={isLoggedIn ? <Main /> : <Navigate to="/login" />} />
