@@ -14,7 +14,10 @@ def register():
         (data['username'], data['email'], hashed_password)
     )
     db.commit()
-    return jsonify({"message": "User registered successfully"}), 201
+    user_id = db.execute(
+        'SELECT userID FROM users WHERE username = ?', (data['username'],)
+    ).fetchone()
+    return jsonify({"user_id": f"{user_id}"}), 201
 
 @auth_bp.route("/login", methods=["POST"])
 def login():
@@ -23,7 +26,9 @@ def login():
     user = db.execute(
         'SELECT * FROM users WHERE username = ?', (data['username'],)
     ).fetchone()
-    
+    user_id = db.execute(
+        'SELECT userID FROM users WHERE username = ?', (data['username'],)
+    ).fetchone()
     if user and check_password_hash(user['password'], data['password']):
-        return jsonify({"message": "Login successful"}), 200
+        return jsonify({"userID": f"{user_id}"}), 200
     return jsonify({"error": "Invalid credentials"}), 401
