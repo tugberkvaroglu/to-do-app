@@ -5,22 +5,33 @@ body {
   margin: 0;
   padding: 0;
   background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-h1 {
-  color: #333;
+.container {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  text-align: center;
 }
 
 input {
-  margin: 5px;
+  width: calc(100% - 22px);
+  margin: 10px 0;
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
 }
 
 button {
-  margin: 5px;
-  padding: 10px 20px;
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
   border: none;
   border-radius: 5px;
   background-color: #007bff;
@@ -30,4 +41,21 @@ button {
 
 button:hover {
   background-color: #0056b3;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  text-decoration: underline;
+  margin-top: 10px;
+}
+
+.link-button:hover {
+  color: #0056b3;
 }
