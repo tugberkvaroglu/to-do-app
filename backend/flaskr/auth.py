@@ -15,7 +15,7 @@ def register():
     )
     db.commit()
     user_id = db.execute(
-        'SELECT userID FROM users WHERE username = ?', (data['username'],)
+        'SELECT id FROM users WHERE username = ?', (data['username'],)
     ).fetchone()
     return jsonify({"user_id": f"{user_id}"}), 201
 
@@ -27,7 +27,7 @@ def login():
         'SELECT * FROM users WHERE username = ?', (data['username'],)
     ).fetchone()
     user_id = db.execute(
-        'SELECT userID FROM users WHERE username = ?', (data['username'],)
+        'SELECT id FROM users WHERE username = ?', (data['username'],)
     ).fetchone()
     if user and check_password_hash(user['password'], data['password']):
         return jsonify({"userID": f"{user_id}"}), 200
