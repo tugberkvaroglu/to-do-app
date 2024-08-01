@@ -48,7 +48,6 @@ function Register() {
         onChange={(e) => setPassword(e.target.value)}
       />
       <button onClick={handleRegister}>Register</button>
-      <button className="link-button" onClick={() => navigate('/login')}>Go to Login</button>
     </div>
   );
 }
