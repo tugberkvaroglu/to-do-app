@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../App.css';
 
 function Register() {
   const [username, setUsername] = useState('');
@@ -26,7 +27,7 @@ function Register() {
   };
 
   return (
-    <div>
+    <div className="container">
       <h1>Register</h1>
       <input
         type="text"
@@ -47,7 +48,7 @@ function Register() {
         onChange={(e) => setPassword(e.target.value)}
       />
       <button onClick={handleRegister}>Register</button>
-      <button onClick={() => navigate('/login')}>Go to Login</button>
+      <button className="link-button" onClick={() => navigate('/login')}>Go to Login</button>
     </div>
   );
 }
