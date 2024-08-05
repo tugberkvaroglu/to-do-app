@@ -13,7 +13,7 @@ function Main() {
           return;
         }
 
-        const response = await fetch(`your-backend-domain/api/tasks?user_id=${userID}`);
+        const response = await fetch(`http://localhost:5000/api/users/${userID}/tasks`);
         if (response.ok) {
           const data = await response.json();
           setTasks(data);
