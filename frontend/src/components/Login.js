@@ -17,16 +17,23 @@ function Login() {
 
       if (response.ok) {
         const data = await response.json();
-        localStorage.setItem('userID', data.userID);
-        navigate('/main');
+        console.log('Login successful:', data);
+
+        if (data.userID) {
+          localStorage.setItem('userID', data.userID);
+          navigate('/main');
+        } else {
+          console.error('Login response missing userID:', data);
+        }
       } else {
+        console.error('Login failed with status:', response.status);
         alert('Login failed');
       }
     } catch (error) {
       console.error('Error:', error);
     }
   };
-
+  
   return (
     <div className="container">
       <h1>Login</h1>
