@@ -5,19 +5,52 @@ body {
   margin: 0;
   padding: 0;
   background-color: #f0f0f0;
+}
+
+.top-bar {
+  background-color: #ffffff;
+  color: black;
+  padding: 10px;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  justify-content: space-between;
+  align-items: end;
+}
+
+.left-button,
+.right-button {
+  background: none;
+  border: none;
+  color: black;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+h1 {
+  margin: 0;
 }
 
 .container {
-  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 20px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+}
+
+.task-card {
+  background: white;
+  padding: 10px;
+  margin: 10px 0;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 300px;
-  text-align: center;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: start;
 }
 
 input {
@@ -43,23 +76,6 @@ button:hover {
   background-color: #0056b3;
 }
 
-h1 {
-  margin-bottom: 20px;
-}
-
-.link-button {
-  background: none;
-  border: none;
-  color: #007bff;
-  cursor: pointer;
-  text-decoration: underline;
-  margin-top: 10px;
-}
-
-.link-button:hover {
-  color: #0056b3;
-}
-
 .add-task-btn {
   background-color: #28a745;
   color: white;
@@ -73,18 +89,26 @@ h1 {
   background-color: #218838;
 }
 
-.add-task-panel {
+.modal-overlay {
   position: fixed;
-  top: 20%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
   background: white;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 300px;
   text-align: center;
-  z-index: 1000;
 }
 
 .close-panel-btn {
@@ -98,4 +122,18 @@ h1 {
 
 .close-panel-btn:hover {
   background-color: #c82333;
+}
+
+.edit-task-modal {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  text-align: center;
+  z-index: 1000;
 }
