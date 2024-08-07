@@ -48,7 +48,7 @@ h1 {
 }
 
 .link-button {
-  background: #043f7e;
+  background: none;
   border: none;
   color: #007bff;
   cursor: pointer;
@@ -57,5 +57,45 @@ h1 {
 }
 
 .link-button:hover {
-  color: #010c18;
+  color: #0056b3;
+}
+
+.add-task-btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-task-btn:hover {
+  background-color: #218838;
+}
+
+.add-task-panel {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  text-align: center;
+  z-index: 1000;
+}
+
+.close-panel-btn {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.close-panel-btn:hover {
+  background-color: #c82333;
 }
