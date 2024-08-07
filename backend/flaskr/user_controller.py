@@ -67,3 +67,13 @@ def update_user_task(user_id, task_id):
     )
     db.commit()
     return jsonify({"message": "Task updated successfully"}), 200
+
+@user_bp.route("/<int:user_id>/tasks/<int:task_id>", methods=["DELETE"])
+def delete_user_task(user_id, task_id):
+    db = get_db()
+    db.execute(
+        'DELETE FROM tasks WHERE id = ? AND user_id = ?',
+        (task_id, user_id)
+    )
+    db.commit()
+    return jsonify({"message": "Task deleted successfully"}), 200
