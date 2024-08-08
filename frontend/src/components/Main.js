@@ -61,14 +61,7 @@ function Main() {
       });
 
       if (response.ok) {
-        const newTaskFromServer = await response.json();
-        setTasks((prevTasks) => {
-          const updatedTasks = [...prevTasks, newTaskFromServer].sort((a, b) => new Date(a.due_date) - new Date(b.due_date));
-          return updatedTasks;
-        });
-        setNewTask({ title: '', description: '', due_date: '' });
-        setErrorMessage(''); // Clear the error message if tasks are successfully added
-        setIsPanelOpen(false); // Close the modal after adding the task
+        window.location.reload(); // Refresh the page after adding the task
       } else {
         console.error('Failed to add task');
       }
@@ -129,6 +122,7 @@ function Main() {
   const handleLogout = () => {
     localStorage.removeItem('userID');
     navigate('/login');
+    window.location.reload(); // Refresh the page after logging out
   };
 
   return (
