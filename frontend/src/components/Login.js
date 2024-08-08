@@ -22,6 +22,7 @@ function Login() {
         if (data.userID) {
           localStorage.setItem('userID', data.userID);
           navigate('/main');
+          window.location.reload();
         } else {
           console.error('Login response missing userID:', data);
         }
