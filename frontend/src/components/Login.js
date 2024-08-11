@@ -31,7 +31,7 @@ function Login() {
         alert('Login failed');
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Error:', error); 
     }
   };
   
