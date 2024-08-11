@@ -11,6 +11,7 @@ function Main() {
   const [errorMessage, setErrorMessage] = useState('');
   const [isPanelOpen, setIsPanelOpen] = useState(false); // State for add task modal visibility
   const [editingTask, setEditingTask] = useState(null); // State for editing task modal visibility
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // State for left menu visibility
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -125,47 +126,54 @@ function Main() {
     window.location.reload(); // Refresh the page after logging out
   };
 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
-    <div>
-      <div className="top-bar">
-        <button className="left-button">Left Button</button>
-        <h1>Task List</h1>
-        <button className="right-button" onClick={handleLogout}>Logout</button>
+    <div className="container">
+      {isMenuOpen && <div className="side-menu">Menu content goes here</div>}
+      <div className="main-content">
+        <div className="top-bar">
+          <button className="left-button" onClick={toggleMenu}>☰</button>
+          <h1 className="top-bar-title">Task List</h1>
+          <button className="right-button" onClick={handleLogout}>Logout</button>
+        </div>
+        {errorMessage && tasks.length === 0 && <p>{errorMessage}</p>}
+        <ul>
+          {tasks.map((task) => (
+            <TaskCard key={task.id} task={task} onEdit={() => setEditingTask(task)} onDelete={handleDeleteTask} />
+          ))}
+        </ul>
+        <button className="add-task-btn" onClick={() => setIsPanelOpen(true)}>Add Task</button>
+        
+        <Modal isOpen={isPanelOpen} onClose={() => setIsPanelOpen(false)}>
+          <h2>Add New Task</h2>
+          <input
+            type="text"
+            placeholder="Title"
+            value={newTask.title}
+            onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
+          />
+          <input
+            type="text"
+            placeholder="Description"
+            value={newTask.description}
+            onChange={(e) => setNewTask({ ...newTask, description: e.target.value })}
+          />
+          <input
+            type="date"
+            value={newTask.due_date}
+            onChange={(e) => setNewTask({ ...newTask, due_date: e.target.value })}
+          />
+          <button onClick={handleAddTask}>Add Task</button>
+          <button className="close-panel-btn" onClick={() => setIsPanelOpen(false)}>Close</button>
+        </Modal>
+        
+        {editingTask && (
+          <EditTask task={editingTask} onSave={handleEditTask} onCancel={() => setEditingTask(null)} />
+        )}
       </div>
-      {errorMessage && tasks.length === 0 && <p>{errorMessage}</p>}
-      <ul>
-        {tasks.map((task) => (
-          <TaskCard key={task.id} task={task} onEdit={() => setEditingTask(task)} onDelete={handleDeleteTask} />
-        ))}
-      </ul>
-      <button className="add-task-btn" onClick={() => setIsPanelOpen(true)}>Add Task</button>
-      
-      <Modal isOpen={isPanelOpen} onClose={() => setIsPanelOpen(false)}>
-        <h2>Add New Task</h2>
-        <input
-          type="text"
-          placeholder="Title"
-          value={newTask.title}
-          onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
-        />
-        <input
-          type="text"
-          placeholder="Description"
-          value={newTask.description}
-          onChange={(e) => setNewTask({ ...newTask, description: e.target.value })}
-        />
-        <input
-          type="date"
-          value={newTask.due_date}
-          onChange={(e) => setNewTask({ ...newTask, due_date: e.target.value })}
-        />
-        <button onClick={handleAddTask}>Add Task</button>
-        <button className="close-panel-btn" onClick={() => setIsPanelOpen(false)}>Close</button>
-      </Modal>
-      
-      {editingTask && (
-        <EditTask task={editingTask} onSave={handleEditTask} onCancel={() => setEditingTask(null)} />
-      )}
     </div>
   );
 }

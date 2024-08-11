@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../App.css';
+import '../Auth.css';
 
 function Register() {
   const [username, setUsername] = useState('');
@@ -27,27 +27,30 @@ function Register() {
   };
 
   return (
-    <div className="container">
-      <h1>Register</h1>
-      <input
-        type="text"
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button onClick={handleRegister}>Register</button>
+    <div className="auth-container">
+      <div className="auth-box">
+        <h1>Register</h1>
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button onClick={handleRegister}>Register</button>
+        <p>Already have an account? <span onClick={() => navigate('/login')}>Login</span></p>
+      </div>
     </div>
   );
 }

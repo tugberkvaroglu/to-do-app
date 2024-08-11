@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../App.css';
+import '../Auth.css';
 
 function Login() {
   const [username, setUsername] = useState('');
@@ -36,22 +36,24 @@ function Login() {
   };
   
   return (
-    <div className="container">
-      <h1>Login</h1>
-      <input
-        type="text"
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button onClick={handleLogin}>Login</button>
-      <button className="link-button" onClick={() => navigate('/register')}>Go to Register</button>
+    <div className="auth-container">
+      <div className="auth-box">
+        <h1>Login</h1>
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button onClick={handleLogin}>Login</button>
+        <p>Don't have an account? <span onClick={() => navigate('/register')}>Register</span></p>
+      </div>
     </div>
   );
 }
