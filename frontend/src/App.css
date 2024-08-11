@@ -1,39 +1,60 @@
-/* App.css */
-
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f0f0f0;
+  height: 100vh; /* Ensure full height */
+}
+
+.container {
+  display: flex;
+  height: 100vh; /* Full height */
+  width: 100vw; /* Full width */
+  justify-content: flex-start; /* Align items to the start (left) */
+}
+
+.side-menu {
+  width: 250px; /* Fixed width for the side menu */
+  background-color: #007bff;
+  color: white;
+  padding: 20px;
+  box-sizing: border-box;
+  height: 100%; /* Full height */
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 100%; /* Full height */
+  box-sizing: border-box;
 }
 
 .top-bar {
-  background-color: #ffffff;
-  color: black;
+  background-color: #007bff;
+  color: white;
   padding: 10px;
   display: flex;
   justify-content: space-between;
-  align-items: end;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .left-button,
 .right-button {
   background: none;
   border: none;
-  color: black;
-  font-size: 1rem;
+  color: white;
+  font-size: 1.2rem;
   cursor: pointer;
 }
 
-h1 {
+.top-bar-title {
   margin: 0;
-}
-
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
 }
 
 ul {
@@ -51,6 +72,7 @@ ul {
   display: flex;
   flex-direction: column;
   align-items: start;
+  width: 100%;
 }
 
 input {
