@@ -12,8 +12,6 @@ function Main() {
   const [isPanelOpen, setIsPanelOpen] = useState(false);
   const [editingTask, setEditingTask] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [completedToday, setCompletedToday] = useState(false);
-  const [completedTasks, setCompletedTasks] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -32,10 +30,6 @@ function Main() {
             setErrorMessage('User tasks not found');
           } else {
             setErrorMessage('');
-            const today = new Date().toISOString().split('T')[0];
-            const completedTasksToday = data.filter(task => task.completed && task.due_date === today);
-            setCompletedToday(completedTasksToday.length > 0);
-            setCompletedTasks(completedTasksToday);
           }
           setTasks(data.sort((a, b) => new Date(a.due_date) - new Date(b.due_date)));
         } else if (response.status === 404) {
@@ -142,7 +136,7 @@ function Main() {
     const month = today.getMonth();
     const daysInMonth = new Date(year, month + 1, 0).getDate();
     const firstDayOfMonth = new Date(year, month, 1).getDay();
-    
+
     const calendar = [];
     let dayCounter = 1;
 
@@ -153,15 +147,22 @@ function Main() {
           weekRow.push(<td key={`${week}-${day}`}></td>);
         } else if (dayCounter <= daysInMonth) {
           const isToday = today.getDate() === dayCounter;
-          const isCompletedToday = isToday && completedToday;
+          const tasksForDay = tasks.filter(
+            task => new Date(task.due_date).getFullYear() === year &&
+                    new Date(task.due_date).getMonth() === month &&
+                    new Date(task.due_date).getDate() === dayCounter
+          );
+          const hasTasks = tasksForDay.length > 0;
+          const completedTasksForDay = tasksForDay.filter(task => task.completed).length > 0;
 
           weekRow.push(
             <td
               key={`${week}-${day}`}
-              className={isCompletedToday ? 'completed-today' : isToday ? 'today' : ''}
-              onClick={() => isCompletedToday && alert(`Tasks completed today:\n${completedTasks.map(task => task.title).join('\n')}`)}
+              className={isToday ? 'today' : hasTasks ? 'has-tasks' : ''}
+              onClick={() => completedTasksForDay && alert(`Tasks completed on ${dayCounter}-${month + 1}-${year}:\n${tasksForDay.map(task => task.title).join('\n')}`)}
             >
               {dayCounter}
+              {hasTasks && <span className="task-dot"></span>}
             </td>
           );
           dayCounter++;

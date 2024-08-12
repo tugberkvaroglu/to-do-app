@@ -60,7 +60,73 @@ body {
   flex: 2; /* 40% */
   padding: 20px;
   box-sizing: border-box;
-  background-color: #e9ecef;
+}
+
+.calendar {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.calendar th, .calendar td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+  position: relative;
+}
+
+.calendar th {
+  background-color: #f7f7f7;
+}
+
+.calendar td {
+  cursor: pointer;
+}
+
+.calendar .today {
+  background-color: #007bff;
+  color: white;
+}
+
+.calendar .has-tasks {
+  background-color: #ffecb3;
+}
+
+.task-dot {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  height: 8px;
+  width: 8px;
+  background-color: #28a745;
+  border-radius: 50%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .content-wrapper {
+    flex-direction: column;
+  }
+
+  .task-section,
+  .calendar-section {
+    width: 100%;
+  }
+
+  .calendar th, .calendar td {
+    padding: 8px;
+  }
+
+  .task-card {
+    margin: 5px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .calendar th, .calendar td {
+    padding: 6px;
+  }
 }
 
 ul {
@@ -181,7 +247,6 @@ button:hover {
   transition: transform 0.3s ease;
   z-index: 1002;
 }
-
 
 .side-menu.open {
   transform: translateX(0);
