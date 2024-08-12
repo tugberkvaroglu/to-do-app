@@ -16,7 +16,7 @@ CREATE TABLE tasks (
     user_id INTEGER NOT NULL,
     title TEXT NOT NULL,
     description TEXT,
-    due_date DATE,
+    due_date TEXT,
     completed BOOLEAN DEFAULT 0,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
@@ -29,8 +29,8 @@ INSERT INTO users (username, email, password) VALUES
 
 -- Insert dummy tasks for user1
 INSERT INTO tasks (user_id, title, description, due_date, completed) VALUES
-(1, 'Task 1 for user1', 'Description for task 1 of user1', '2024-07-25', 0),
-(1, 'Task 2 for user1', 'Description for task 2 of user1', '2024-07-26', 1);
+(1, 'Sample Task 1', 'This is a sample task description', '12-10-2024', 0),
+(1, 'Sample Task 2', 'This is a sample task description', '12-10-2024', 0);
 
 -- Insert dummy tasks for user2
 INSERT INTO tasks (user_id, title, description, due_date, completed) VALUES
