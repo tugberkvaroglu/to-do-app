@@ -194,14 +194,17 @@ function Main() {
 
   return (
     <div className="container">
-      {isMenuOpen && <div className="side-menu">Menu content goes here</div>}
-      <div className="main-content">
+      <div className={`side-menu ${isMenuOpen ? 'open' : ''}`}>
+        <p>Menu content goes here</p>
+        <button onClick={toggleMenu}>Close Menu</button>
+      </div>
+      <div className="top-bar">
+        <button className="left-button" onClick={toggleMenu}>☰</button>
+        <h1 className="top-bar-title">Task List</h1>
+        <button className="right-button" onClick={handleLogout}>Logout</button>
+      </div>
+      <div className="content-wrapper">
         <div className="task-section">
-          <div className="top-bar">
-            <button className="left-button" onClick={toggleMenu}>☰</button>
-            <h1 className="top-bar-title">Task List</h1>
-            <button className="right-button" onClick={handleLogout}>Logout</button>
-          </div>
           {errorMessage && tasks.length === 0 && <p>{errorMessage}</p>}
           <ul>
             {tasks.map((task) => (
