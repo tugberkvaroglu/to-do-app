@@ -12,6 +12,9 @@ function Main() {
   const [isPanelOpen, setIsPanelOpen] = useState(false);
   const [editingTask, setEditingTask] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isChatOpen, setIsChatOpen] = useState(false); // State to manage chat window visibility
+  const [messages, setMessages] = useState([]); // State to manage chat messages
+  const [chatInput, setChatInput] = useState(''); // State for chat input
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -130,6 +133,17 @@ function Main() {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const toggleChat = () => {
+    setIsChatOpen(!isChatOpen); // Toggle the chat window
+  };
+
+  const handleSendMessage = () => {
+    if (chatInput.trim() !== '') {
+      setMessages([...messages, chatInput]); // Add new message to the list
+      setChatInput(''); // Clear input field
+    }
+  };
+
   const renderCalendar = () => {
     const today = new Date();
     const year = today.getFullYear();
@@ -246,6 +260,36 @@ function Main() {
           {renderCalendar()}
         </div>
       </div>
+
+      {/* Chat Button */}
+      <button className="chat-button" onClick={toggleChat}>
+        💬
+      </button>
+
+      {/* Chat Window */}
+      {isChatOpen && (
+        <div className="chat-window">
+          <div className="chat-header">Taskbot</div>
+          <div className="chat-body">
+            {messages.map((message, index) => (
+              <div key={index} className="chat-bubble">
+                {message}
+              </div>
+            ))}
+          </div>
+          <div className="chat-footer">
+            <input
+              type="text"
+              className="chat-input"
+              placeholder="Ask the Taskbot anything"
+              value={chatInput}
+              onChange={(e) => setChatInput(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()} // Send message on Enter key press
+            />
+            <button className="chat-send-button" onClick={handleSendMessage}>Send</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
