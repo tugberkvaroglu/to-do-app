@@ -16,7 +16,7 @@ function Main() {
   const [isChatOpen, setIsChatOpen] = useState(false); // State to manage chat window visibility
   const [messages, setMessages] = useState([]); // State to manage chat messages
   const [chatInput, setChatInput] = useState(''); // State for chat input
-  const taskbot = new Taskbot('<YOUR_API_KEY>'); // Initialize Taskbot with API key
+  const taskbot = new Taskbot(''); // Initialize Taskbot with API key
   const navigate = useNavigate();
 
   useEffect(() => {
