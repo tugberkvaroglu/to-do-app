@@ -3,6 +3,7 @@ import '../App.css';
 import TaskCard from './TaskCard';
 import EditTask from './EditTask';
 import Modal from './Modal';
+import Taskbot from './Taskbot'; // Import the Taskbot class
 import { useNavigate } from 'react-router-dom';
 
 function Main() {
@@ -15,6 +16,7 @@ function Main() {
   const [isChatOpen, setIsChatOpen] = useState(false); // State to manage chat window visibility
   const [messages, setMessages] = useState([]); // State to manage chat messages
   const [chatInput, setChatInput] = useState(''); // State for chat input
+  const taskbot = new Taskbot('<YOUR_API_KEY>'); // Initialize Taskbot with API key
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -137,10 +139,15 @@ function Main() {
     setIsChatOpen(!isChatOpen); // Toggle the chat window
   };
 
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     if (chatInput.trim() !== '') {
-      setMessages([...messages, chatInput]); // Add new message to the list
+      const userMessage = chatInput.trim();
+      setMessages([...messages, { text: userMessage, sender: 'user' }]); // Add user's message to the list
       setChatInput(''); // Clear input field
+
+      // Get response from Taskbot
+      const taskbotResponse = await taskbot.sendMessage(userMessage);
+      setMessages((prevMessages) => [...prevMessages, { text: taskbotResponse, sender: 'taskbot' }]); // Add Taskbot's response
     }
   };
 
@@ -272,8 +279,11 @@ function Main() {
           <div className="chat-header">Taskbot</div>
           <div className="chat-body">
             {messages.map((message, index) => (
-              <div key={index} className="chat-bubble">
-                {message}
+              <div
+                key={index}
+                className={`chat-bubble ${message.sender === 'user' ? 'user-bubble' : 'taskbot-bubble'}`}
+              >
+                {message.text}
               </div>
             ))}
           </div>
