@@ -334,12 +334,22 @@ button:hover {
 
 /* Chat Bubble Styles */
 .chat-bubble {
-  background-color: #007bff;
-  color: white;
   padding: 10px;
   border-radius: 10px;
   margin-bottom: 10px;
   max-width: 80%;
-  align-self: flex-end; /* Aligns the bubble to the right */
-  word-wrap: break-word; /* Allows the text to wrap */
+  word-wrap: break-word;
 }
+
+.user-bubble {
+  background-color: #007bff;
+  color: white;
+  align-self: flex-end;
+}
+
+.taskbot-bubble {
+  background-color: hsl(120, 49%, 47%);
+  color: black;
+  align-self: flex-start;
+}
+
