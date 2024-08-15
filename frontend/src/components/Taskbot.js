@@ -3,7 +3,7 @@ import axios from 'axios';
 class Taskbot {
   constructor(apiKey) {
     this.apiKey = apiKey;
-    this.apiUrl = 'https://api.openai.com/v1/completions'; // Endpoint for OpenAI API
+    this.apiUrl = 'https://api.openai.com/v1/chat/completions'; // Endpoint for OpenAI API
   }
 
   async sendMessage(prompt) {
@@ -11,7 +11,7 @@ class Taskbot {
       const response = await axios.post(
         this.apiUrl,
         {
-          model: "text-davinci-003", // or another model you want to use
+          model: "gpt-3.5-turbo", // or another model you want to use
           prompt: prompt,
           max_tokens: 150, // Adjust token length as needed
         },
