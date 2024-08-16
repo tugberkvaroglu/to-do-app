@@ -1,7 +1,7 @@
 import OpenAI from "openai";
 
 
-const openai = new OpenAI({ apiKey: "OPENAISİKİM", dangerouslyAllowBrowser: true});
+const openai = new OpenAI({ apiKey: "sk-2etPEtsXPGngrxz65v3mIGKgWgkcN7p2DTCkVkJM7gT3BlbkFJCttMicCljvsiUM-kt_RQbS0k6Ft_PEaWx6U-SmvhcA", dangerouslyAllowBrowser: true});
 
 class Taskbot {
 
@@ -12,7 +12,7 @@ class Taskbot {
           messages: [{ role: "system", content: "you are a helpfull asistant that helps users with finding new tasks and helping them scedule their tasks."},
             {role: "user", content: prompt}
           ],
-          model: "gpt-3.5-turbo", // or another model you want to use
+          model: "babbage-002", // or another model you want to use
         });
         console.log(response)
       if (response.choices && response.choices.length > 0) {
