@@ -1,7 +1,7 @@
 import OpenAI from "openai";
 
 
-const openai = new OpenAI({ apiKey: "XXX", dangerouslyAllowBrowser: true});
+//const openai = new OpenAI({ apiKey: "XXX", dangerouslyAllowBrowser: true});
 
 class Taskbot {
 
