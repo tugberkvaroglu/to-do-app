@@ -31,7 +31,10 @@ body {
 
 .left-button,
 .right-button {
+  position: static;
   background: none;
+  top: 50px;
+  left: 100px;
   border: none;
   color: white;
   font-size: 1.2rem;
