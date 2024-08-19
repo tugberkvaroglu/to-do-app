@@ -31,14 +31,15 @@ body {
 
 .left-button,
 .right-button {
-  position: static;
   background: none;
   top: 50px;
   left: 100px;
   border: none;
+  background-color: #00448c;
   color: white;
   font-size: 1.2rem;
   cursor: pointer;
+  padding: 12px 16px;
 }
 
 .top-bar-title {
