@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import "./App.css";
 import Login from './components/Login';
@@ -7,7 +8,11 @@ import Profile from './components/profile';
 import Register from './components/Register';
 
 function App() {
-  
+  useEffect(() => {
+    // Clear local storage on app start
+    localStorage.clear();
+  }, []);
+
   const isLoggedIn = !!localStorage.getItem('userID'); // Check if user is logged in
 
   return (
