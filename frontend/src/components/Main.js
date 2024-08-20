@@ -117,6 +117,7 @@ function Main() {
 
       if (response.ok) {
         setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
+        window.location.reload(); // Refresh the page after logging out
       } else {
         console.error('Failed to delete task');
       }
