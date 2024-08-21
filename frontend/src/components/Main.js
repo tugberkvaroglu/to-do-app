@@ -19,12 +19,14 @@ function Main() {
   const taskbot = new Taskbot(); // Initialize Taskbot with API key
   const navigate = useNavigate();
 
+
   useEffect(() => {
     const fetchTasks = async () => {
       try {
         const userID = localStorage.getItem('userID');
         if (!userID) {
           console.error('User ID not found');
+          navigate('/login'); 
           return;
         }
 
