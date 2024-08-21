@@ -8,10 +8,7 @@ import Profile from './components/profile';
 import Register from './components/Register';
 
 function App() {
-  useEffect(() => {
-    // Clear local storage on app start
-    localStorage.clear();
-  }, []);
+  
 
   const isLoggedIn = !!localStorage.getItem('userID'); // Check if user is logged in
 
