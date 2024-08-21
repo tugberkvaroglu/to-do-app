@@ -1,5 +1,5 @@
 # to-do-app
-advanced to do app that tracks user's to do list with the streak mechanism
+really basic to do app with some added functionality but not finished and will not be finished XD
 
 ## Screenshots
 
