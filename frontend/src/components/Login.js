@@ -18,9 +18,9 @@ function Login() {
       if (response.ok) {
         const data = await response.json();
         console.log('Login successful:', data);
+        localStorage.setItem('userID', data.userID);
 
         if (data.userID) {
-          localStorage.setItem('userID', data.userID);
           navigate('/main');
           window.location.reload();
         } else {
